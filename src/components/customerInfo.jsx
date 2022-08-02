@@ -5,10 +5,10 @@ import * as Yup from "yup";
 const CustomerInfo = () => {
   const formik = useFormik({
     initialValues: {
-      streetNumber: null,
+      streetNumber: 0,
       streetName: "",
       suburb: "",
-      postcode: null,
+      postcode: 0,
       state: "",
     },
     validationSchema: Yup.object({
@@ -20,8 +20,8 @@ const CustomerInfo = () => {
         .min(5, "has to be minimu 5 characters")
         .required("required"),
       postcode: Yup.number().required("required"),
-      state: Yup.string().required("required"),
     }),
+      state: Yup.string().required("required"),
     onSubmit: (values) => {
       console.log(values);
     },
