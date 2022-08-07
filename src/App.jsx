@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { ApolloClient, InMemoryCache, ApolloProvider, gql, HttpLink } from '@apollo/client'
+import { ApolloClient, InMemoryCache, ApolloProvider, gql, HttpLink, from } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
 
 import Home from "./components/home"
@@ -7,7 +7,7 @@ import SignUp from "./components/signUp"
 import CustomerInfo from "./components/customerInfo"
 import TestPage from "./components/testPage"
 
-const errorLink = onError(({ graphqlErrors, newworkError}) => {
+const errorLink = onError(({ graphqlErrors, networkError}) => {
   if (graphqlErrors){
     graphqlErrors.map(({message, location, path}) => {
       alert (`Graphql error ${message}`)
@@ -17,7 +17,7 @@ const errorLink = onError(({ graphqlErrors, newworkError}) => {
 
 const link = from([
   errorLink,
-  new HttpLink({ uri: "localhost:3200/graphql"})
+  new HttpLink({ uri: "http://localhost:8000/graphql"})
 ])
 
 const client = new ApolloClient({
