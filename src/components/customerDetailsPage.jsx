@@ -7,6 +7,7 @@ const CustomerDetailPage = () => {
   const [suburb, setSuburb] = useState("");
   const [postcode, setPostcode] = useState(0);
   const [state, setState] = useState("");
+  const [disabled, setDisabled] = useState(true)
 
   const handleSubmit = () =>{
     const response = {
@@ -72,7 +73,9 @@ const CustomerDetailPage = () => {
             onChange={(e) => setState(e.target.value)}
           />
         </div>
-        <button onClick={handleSubmit}>Submit</button>
+        <label htmlFor="termsCheckbox" />
+        <input type="checkbox" id="terms-checkbox" name="terms-checkbox" onChange={(e)=> setDisabled(!e.target.checked)} />
+        <button onClick={handleSubmit} disabled={disabled}>Submit</button>
       </form>
     </>
   );
