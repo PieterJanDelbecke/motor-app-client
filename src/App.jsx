@@ -4,6 +4,7 @@ import { onError } from '@apollo/client/link/error'
 
 import Home from "./components/home"
 import SignUp from "./components/signUp"
+import CustomerDetailPage from "./components/customerDetailsPage"
 import CustomerInfo from "./components/customerInfo"
 import TestPage from "./components/testPage"
 
@@ -33,6 +34,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/customerdetails" element={<CustomerDetailPage />} />
           <Route path="/info" element={<CustomerInfo />} />
           <Route path="/test" element={<TestPage />} />
         </Routes>
