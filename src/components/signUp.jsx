@@ -1,8 +1,17 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useQuery, gql, useMutation } from "@apollo/client";
 import { Formik, useFormik, Field } from "formik";
 import * as Yup from "yup"
 
+import { GET_CUSTOMERS } from "../GraphQL/queries";
+import { CREATE_CUSTOMER } from "../GraphQL/mutations";
+
+
 const SignUp = () => {
+  let navigate = useNavigate()
+  const [createCustomer, { data: mutationData, loading: mutationLoading, error: mutationError}] = useMutation(CREATE_CUSTOMER)
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -18,8 +27,22 @@ const SignUp = () => {
         lastName: Yup.string().max(15,"Must be 15 characters of less").required("required"),
         phoneNumber: Yup.string().min(10,"must be 10 characters").max(10, "must be 10 characters").required("required")
     }),
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      console.log(values)
+      await createCustomer({
+        variables:{
+          email: values.email,
+          password: values.password,
+          firstName: values.firstName,
+          lastName: values.lastName,
+          phoneNumber: values.phoneNumber
+        }
+      })
+      if(mutationError){
+        console.log(mutationError)
+      }
+      console.log(mutationData)
+      navigate("/")
     },
   });
   return (

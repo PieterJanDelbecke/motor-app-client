@@ -1,0 +1,16 @@
+import { useState} from 'react'
+
+const CustomerDetailPage = () => {
+    const [customerId, setCustomerId] = useState("")
+    const [streetNumber, setStreetNumber] = useState(0)
+    const [suburb, setSuburb] = useState("")
+    const [postcode, setPostcode] = useState("")
+    const [state, setState] = useState("")
+    return (
+        <>
+        
+        </>
+    )
+}
+
+export default CustomerDetailPage
