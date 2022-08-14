@@ -1,59 +1,50 @@
-import { useEffect, useState } from "react";
-import { useQuery, gql, useMutation } from "@apollo/client";
+import styled from "styled-components";
 
-import { GET_CUSTOMERS } from "../GraphQL/queries";
-import { CREATE_CUSTOMER } from "../GraphQL/mutations";
+const Container = styled.div`
+  width: 80%;
+  height: 100vh;
+  border: red solid 1px;
+  margin: 0 auto; 
+`;
+const Block1 = styled.div`
+  width: 400px;
+  height: 400px;
+  border: black solid 2px;
+  margin: 10px;
+  position: relative;
+  right: 100px;
+  color: red;
+  background-color: yellow;
+  opacity: 0.5;
+`;
+const Block2 = styled.div`
+  width: 400px;
+  height: 400px;
+  border: black solid 2px;
+  margin: 10px;
+  position:absolute;
+  right: 200px;
+`;
+const Block3 = styled.div`
+  width: 400px;
+  height: 400px;
+  border: black solid 2px;
+  margin: 10px;
+`;
+
+const H1 = styled.h1`
+  text-align: center;
+`
 
 const TestPage = () => {
-  const [firstName, setFirstName] = useState("");
-  const firstNameList = ["Adam", "Bob", "Charlie", "Delta", "Echo"];
-
-  const { data: queryData, loading: queryLoading, error: queryError } = useQuery(GET_CUSTOMERS);
-  const [
-    createCustomer,
-    { data: mutationData, loading: mutationLoading, error: mutationError },
-  ] = useMutation(CREATE_CUSTOMER);
-
-  const [customers, setCustomers] = useState([]);
-
-  useEffect(() => {
-    if (queryData) {
-      console.log(queryData);
-      setCustomers(queryData.getAllCustomers)
-    }
-  }, [queryData]);
-
-  const addCustomer = async () => {
-    await createCustomer({
-      variables: {
-        email: "Xreact@test.com",
-        password: "XreactPassword",
-        firstName: firstName,
-        lastName: "Doe",
-        phoneNumber: "0499888777",
-      },
-    });
-    if (mutationError) {
-      console.log(mutationError);
-    }
-    console.log(mutationData);
-  };
-
   return (
     <>
-      <h1>Test Page:</h1>
-      <h2>Get Customers</h2>
-      <select onChange={(e) => setFirstName(e.target.value)} defaultValue={"DEFAULT"}>
-        <option value="DEFAULT" disabled>
-          Please Select
-        </option>
-        {firstNameList.map((firstNameItem) => {
-          return <option key={firstNameItem} value={firstNameItem}>
-            {firstNameItem}
-          </option>;
-        })}
-      </select>
-      <button onClick={addCustomer}>Create Customer</button>
+      <H1>Test Page</H1>
+      <Container>
+        <Block1>block 1</Block1>
+        <Block2>block 2</Block2>
+        <Block3>block 3</Block3>
+      </Container>
     </>
   );
 };
