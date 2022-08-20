@@ -1,52 +1,25 @@
-import styled from "styled-components";
+import { useState, useRef } from "react"
 
-const Container = styled.div`
-  width: 80%;
-  height: 100vh;
-  border: red solid 1px;
-  margin: 0 auto; 
-`;
-const Block1 = styled.div`
-  width: 400px;
-  height: 400px;
-  border: black solid 2px;
-  margin: 10px;
-  position: relative;
-  right: 100px;
-  color: red;
-  background-color: yellow;
-  opacity: 0.5;
-`;
-const Block2 = styled.div`
-  width: 400px;
-  height: 400px;
-  border: black solid 2px;
-  margin: 10px;
-  position:absolute;
-  right: 200px;
-`;
-const Block3 = styled.div`
-  width: 400px;
-  height: 400px;
-  border: black solid 2px;
-  margin: 10px;
-`;
-
-const H1 = styled.h1`
-  text-align: center;
-`
 
 const TestPage = () => {
-  return (
-    <>
-      <H1>Test Page</H1>
-      <Container>
-        <Block1>block 1</Block1>
-        <Block2>block 2</Block2>
-        <Block3>block 3</Block3>
-      </Container>
-    </>
-  );
-};
+  const [name, setName] = useState("")
+  const inputRef = useRef()
 
-export default TestPage;
+  const handleClick = () => {
+    console.log(inputRef)
+    const inputObject = inputRef?.current
+    console.dir(inputObject)
+  }
+
+    console.log("Name: ", name)
+  return(
+      <>
+      <h1>useRef test</h1>
+      <label htmlFor="firstName">First Name: </label>
+      <input ref={inputRef} type="text" name="firstName" value={name} onChange={(e) => setName(e.target.value)}/>
+      <button onClick={handleClick}>Click</button>
+    </>
+  )
+}
+
+export default TestPage

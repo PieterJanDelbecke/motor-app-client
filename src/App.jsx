@@ -7,6 +7,7 @@ import SignUp from "./components/signUp"
 import CustomerDetailPage from "./components/customerDetailsPage"
 import CustomerInfo from "./components/customerInfo"
 import TestPage from "./components/testPage"
+import SliderPage from "./components/sliderPage"
 
 const errorLink = onError(({ graphqlErrors, networkError}) => {
   if (graphqlErrors){
@@ -36,6 +37,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/customerdetails" element={<CustomerDetailPage />} />
           <Route path="/info" element={<CustomerInfo />} />
+          <Route path="/slider" element={<SliderPage />} />
           <Route path="/test" element={<TestPage />} />
         </Routes>
       </BrowserRouter>
