@@ -1,11 +1,18 @@
 import { Link } from "react-router-dom"
+import styled from "styled-components"
+
+const NavLink = styled(Link)`
+    display: inline-block;
+    margin: 10px;
+`
 
 const Home = () => {
     return(
         <>
-            <Link to="/signup">Sign Up</Link>
-            <Link to="/test">Test</Link>
-            <Link to="/customerdetails">CustomerDetails</Link>
+            <NavLink to="/signup">Sign Up</NavLink>
+            <NavLink to="/test">Test</NavLink>
+            <NavLink to="/customerdetails">CustomerDetails</NavLink>
+            <NavLink to="/slider">Slider</NavLink>
             <h1>Home Page</h1>
         </>
     )
