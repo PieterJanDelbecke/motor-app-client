@@ -13,6 +13,7 @@ const Button = styled.button`
 const SliderPage = () => {
 	const [sliderStart, setSliderStart] = useState(0);
 	const [sliderEnd, setSliderEnd] = useState(100);
+    const [count, setCount] = useState(0)
 
 	const cropperRef = useRef(null);
 	const videoRef = useRef(null);
@@ -36,7 +37,7 @@ const SliderPage = () => {
 	};
 
     const changeVideoSeek = (value) => {
-        const video = videoRef.current;
+        const video = videoRef?.current;
         if(!video || isNaN(video.duration)) return
         videoRef.current.currentTime = videoLengthMapping(video.duration, value)
     }
@@ -65,8 +66,6 @@ const SliderPage = () => {
 
 	const handleCrop = async () => {
 		const cropObject = cropperRef?.current;
-		// console.log("getData", cropObject.cropper.getData());
-		// console.log("getImageData", cropObject.cropper.getImageData());
 		const cropData = cropObject.cropper.getData();
 		const imageData = cropObject.cropper.getImageData();
 		const data = {
@@ -99,6 +98,14 @@ const SliderPage = () => {
 		console.dir(button);
 	};
 
+    const handleCount = async () => {
+        setCount((prevCount) => prevCount + 1)
+        const countResponse = await axios.get(
+            `http://localhost:8000/video/trim/${count}`
+        )
+        console.log(countResponse)
+    } 
+
 	return (
 		<>
 			<h1>SliderPage</h1>
@@ -112,6 +119,7 @@ const SliderPage = () => {
 			<Button ref={buttonRef} onClick={handleButtonClick}>
 				buttonRef
 			</Button>
+            <Button onClick={handleCount}>Get Count</Button>
 		</>
 	);
 };
