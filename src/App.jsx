@@ -6,7 +6,7 @@ import Home from "./components/home"
 import SignUp from "./components/signUp"
 import CustomerDetailPage from "./components/customerDetailsPage"
 import CustomerInfo from "./components/customerInfo"
-import TestPage from "./components/testPage"
+import TestPage from "./components/testing/testPage"
 import SliderPage from "./components/sliderPage"
 
 const errorLink = onError(({ graphqlErrors, networkError}) => {
